@@ -7,7 +7,7 @@
 - `app.py` — `create_app()` ファクトリパターンの実装
 - `templates/index.html` — タイマー表示の静的HTMLのみ（JS/CSS なし）
 
-**確認方法**: `flask run` でサーバー起動 → ブラウザでページが表示される
+**確認方法**: `cd 1.pomodoro` してから `flask run` でサーバー起動（またはリポジトリルートで `FLASK_APP=1.pomodoro.app flask run`）→ ブラウザでページが表示される
 
 ## Step 2: CSS スタイリング（機能 #14）
 
