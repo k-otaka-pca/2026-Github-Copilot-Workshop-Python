@@ -41,20 +41,25 @@ class PomodoroTimer {
   }
 
   switchMode(newMode) {
-    this.mode = newMode;
-    this.isRunning = false;
+    let nextTimeRemaining;
 
     switch (newMode) {
       case "work":
-        this.timeRemaining = this.workDuration;
+        nextTimeRemaining = this.workDuration;
         break;
       case "shortBreak":
-        this.timeRemaining = this.shortBreakDuration;
+        nextTimeRemaining = this.shortBreakDuration;
         break;
       case "longBreak":
-        this.timeRemaining = this.longBreakDuration;
+        nextTimeRemaining = this.longBreakDuration;
         break;
+      default:
+        throw new Error(`Invalid mode: ${newMode}`);
     }
+
+    this.mode = newMode;
+    this.timeRemaining = nextTimeRemaining;
+    this.isRunning = false;
   }
 
   start() {
