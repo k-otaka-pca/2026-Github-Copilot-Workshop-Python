@@ -69,7 +69,7 @@
   - `formatTime()` のフォーマットテスト
   - 長休憩間隔の判定テスト
 
-**確認方法**: `pytest` と `node tests/test_timer_logic.js` が全パス
+**確認方法**: リポジトリルートで `pytest 1.pomodoro/tests` と `node 1.pomodoro/tests/test_timer_logic.js` を実行し、どちらも全パスすることを確認
 
 ## まとめ
 
