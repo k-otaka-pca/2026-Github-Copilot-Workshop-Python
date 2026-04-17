@@ -90,6 +90,8 @@ class PomodoroTimer {
         return "短休憩";
       case "longBreak":
         return "長休憩";
+      default:
+        return "不明";
     }
   }
 }
