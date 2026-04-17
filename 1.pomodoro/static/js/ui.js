@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function startTimer() {
     if (intervalId !== null) return;
 
+    // ユーザー操作時に通知権限をリクエスト
+    requestNotificationPermission();
+
     timer.start();
     intervalId = setInterval(() => {
       const completed = timer.tick();
@@ -108,9 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", startTimer);
   pauseBtn.addEventListener("click", pauseTimer);
   resetBtn.addEventListener("click", resetTimer);
-
-  // 通知権限をリクエスト
-  requestNotificationPermission();
 
   // 初期表示
   updateDisplay();
