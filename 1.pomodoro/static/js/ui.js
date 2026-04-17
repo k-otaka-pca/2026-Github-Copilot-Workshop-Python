@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return timer.shortBreakDuration;
       case "longBreak":
         return timer.longBreakDuration;
+      default:
+        console.warn(`Unknown timer mode: ${timer.mode}. Falling back to work duration.`);
+        return timer.workDuration;
     }
   }
 
