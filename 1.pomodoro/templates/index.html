@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポモドーロタイマー</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body data-mode="work">
     <div class="container">
         <h1>ポモドーロタイマー</h1>
 
         <div class="timer-display">
+            <svg class="progress-ring" viewBox="0 0 288 288">
+                <circle class="progress-ring__bg" cx="144" cy="144" r="140" />
+                <circle class="progress-ring__fg" cx="144" cy="144" r="140" />
+            </svg>
             <div class="mode-label">作業中</div>
             <div class="time">25:00</div>
         </div>
@@ -24,5 +29,8 @@
             完了したポモドーロ: <span id="completed-count">0</span>
         </div>
     </div>
+
+    <script src="{{ url_for('static', filename='js/pomodoroTimer.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 </html>

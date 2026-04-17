@@ -1,0 +1,192 @@
+/* ===== 基本リセット ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== カスタムプロパティ ===== */
+:root {
+    --color-work: #e74c3c;
+    --color-short-break: #2ecc71;
+    --color-long-break: #3498db;
+    --color-bg: #1a1a2e;
+    --color-surface: #16213e;
+    --color-text: #eee;
+    --color-text-muted: #aaa;
+    --color-button-bg: rgba(255, 255, 255, 0.1);
+    --color-button-hover: rgba(255, 255, 255, 0.2);
+    --timer-size: 280px;
+    --current-color: var(--color-work);
+}
+
+/* ===== 全体レイアウト ===== */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ===== タイトル ===== */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+/* ===== タイマー円形表示 ===== */
+.timer-display {
+    width: var(--timer-size);
+    height: var(--timer-size);
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 4px solid var(--current-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.3),
+        inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.timer-display .mode-label {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.timer-display .time {
+    font-size: 4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--current-color);
+    line-height: 1;
+}
+
+/* ===== プログレスリング（Step 4 で JS から操作） ===== */
+.timer-display .progress-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: calc(var(--timer-size) + 8px);
+    height: calc(var(--timer-size) + 8px);
+}
+
+.timer-display .progress-ring circle {
+    fill: none;
+    stroke-width: 4;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.timer-display .progress-ring .progress-ring__bg {
+    stroke: rgba(255, 255, 255, 0.05);
+}
+
+.timer-display .progress-ring .progress-ring__fg {
+    stroke: var(--current-color);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* ===== コントロールボタン ===== */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.controls button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid var(--current-color);
+    border-radius: 8px;
+    background: var(--color-button-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
+}
+
+.controls button:hover {
+    background: var(--color-button-hover);
+}
+
+.controls button:active {
+    transform: scale(0.96);
+}
+
+#start-btn {
+    background: var(--current-color);
+    border-color: var(--current-color);
+    color: #fff;
+}
+
+#start-btn:hover {
+    filter: brightness(1.1);
+    background: var(--current-color);
+}
+
+/* ===== ポモドーロカウント ===== */
+.pomodoro-count {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.pomodoro-count #completed-count {
+    font-weight: 700;
+    color: var(--current-color);
+}
+
+/* ===== モード別カラー切替（JS から body に data 属性で適用） ===== */
+body[data-mode="work"] {
+    --current-color: var(--color-work);
+}
+
+body[data-mode="shortBreak"] {
+    --current-color: var(--color-short-break);
+}
+
+body[data-mode="longBreak"] {
+    --current-color: var(--color-long-break);
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 400px) {
+    :root {
+        --timer-size: 220px;
+    }
+
+    .timer-display .time {
+        font-size: 3rem;
+    }
+
+    .controls button {
+        min-width: 90px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
